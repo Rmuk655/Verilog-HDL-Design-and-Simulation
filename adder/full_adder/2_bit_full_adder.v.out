@@ -1,0 +1,64 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001fd0c166740 .scope module, "adder_2_bit_1" "adder_2_bit_1" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "cin";
+    .port_info 3 /OUTPUT 1 "sum";
+    .port_info 4 /OUTPUT 1 "cout";
+o000001fd0c166f98 .functor BUFZ 1, C4<z>; HiZ drive
+o000001fd0c166fc8 .functor BUFZ 1, C4<z>; HiZ drive
+L_000001fd0c1337c0 .functor AND 1, o000001fd0c166f98, o000001fd0c166fc8, C4<1>, C4<1>;
+o000001fd0c167088 .functor BUFZ 1, C4<z>; HiZ drive
+L_000001fd0c11c4e0 .functor AND 1, o000001fd0c166f98, o000001fd0c167088, C4<1>, C4<1>;
+L_000001fd0c11c550 .functor AND 1, o000001fd0c166fc8, o000001fd0c167088, C4<1>, C4<1>;
+L_000001fd0c164600 .functor XOR 1, o000001fd0c166f98, o000001fd0c166fc8, o000001fd0c167088, C4<0>;
+L_000001fd0c164670 .functor OR 1, L_000001fd0c1337c0, L_000001fd0c11c4e0, L_000001fd0c11c550, C4<0>;
+v000001fd0c133380_0 .net "a", 0 0, o000001fd0c166f98;  0 drivers
+v000001fd0c133120_0 .net "b", 0 0, o000001fd0c166fc8;  0 drivers
+v000001fd0c1335a0_0 .net "c1", 0 0, L_000001fd0c1337c0;  1 drivers
+v000001fd0c166a60_0 .net "c2", 0 0, L_000001fd0c11c4e0;  1 drivers
+v000001fd0c166b00_0 .net "c3", 0 0, L_000001fd0c11c550;  1 drivers
+v000001fd0c163be0_0 .net "cin", 0 0, o000001fd0c167088;  0 drivers
+v000001fd0c163dc0_0 .net "cout", 0 0, L_000001fd0c164670;  1 drivers
+v000001fd0c163c80_0 .net "sum", 0 0, L_000001fd0c164600;  1 drivers
+S_000001fd0c1668d0 .scope module, "adder_2_bit_2" "adder_2_bit_2" 2 10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "cin";
+    .port_info 3 /OUTPUT 1 "sum";
+    .port_info 4 /OUTPUT 1 "cout";
+o000001fd0c1672f8 .functor BUFZ 1, C4<z>; HiZ drive
+o000001fd0c167328 .functor BUFZ 1, C4<z>; HiZ drive
+L_000001fd0c1646e0 .functor XOR 1, o000001fd0c1672f8, o000001fd0c167328, C4<0>, C4<0>;
+o000001fd0c167358 .functor BUFZ 1, C4<z>; HiZ drive
+L_000001fd0c1ae890 .functor XOR 1, L_000001fd0c1646e0, o000001fd0c167358, C4<0>, C4<0>;
+L_000001fd0c1aea50 .functor AND 1, o000001fd0c1672f8, o000001fd0c167328, C4<1>, C4<1>;
+L_000001fd0c1aecf0 .functor AND 1, o000001fd0c1672f8, o000001fd0c167358, C4<1>, C4<1>;
+L_000001fd0c1ae9e0 .functor OR 1, L_000001fd0c1aea50, L_000001fd0c1aecf0, C4<0>, C4<0>;
+L_000001fd0c1ae900 .functor AND 1, o000001fd0c167328, o000001fd0c167358, C4<1>, C4<1>;
+L_000001fd0c1aec10 .functor OR 1, L_000001fd0c1ae9e0, L_000001fd0c1ae900, C4<0>, C4<0>;
+v000001fd0c164360_0 .net *"_ivl_0", 0 0, L_000001fd0c1646e0;  1 drivers
+v000001fd0c163780_0 .net *"_ivl_10", 0 0, L_000001fd0c1ae900;  1 drivers
+v000001fd0c164220_0 .net *"_ivl_4", 0 0, L_000001fd0c1aea50;  1 drivers
+v000001fd0c163a00_0 .net *"_ivl_6", 0 0, L_000001fd0c1aecf0;  1 drivers
+v000001fd0c1640e0_0 .net *"_ivl_8", 0 0, L_000001fd0c1ae9e0;  1 drivers
+v000001fd0c163aa0_0 .net "a", 0 0, o000001fd0c1672f8;  0 drivers
+v000001fd0c1638c0_0 .net "b", 0 0, o000001fd0c167328;  0 drivers
+v000001fd0c163b40_0 .net "cin", 0 0, o000001fd0c167358;  0 drivers
+v000001fd0c163d20_0 .net "cout", 0 0, L_000001fd0c1aec10;  1 drivers
+v000001fd0c164400_0 .net "sum", 0 0, L_000001fd0c1ae890;  1 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "2_bit_full_adder.v";

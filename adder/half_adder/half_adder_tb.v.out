@@ -1,0 +1,73 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000019bac506ab0 .scope module, "half_adder_2" "half_adder_2" 2 6;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /OUTPUT 1 "Sum";
+    .port_info 3 /OUTPUT 1 "Carry";
+o0000019bac506fa8 .functor BUFZ 1, C4<z>; HiZ drive
+o0000019bac506fd8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0000019bac4bab20 .functor XOR 1, o0000019bac506fa8, o0000019bac506fd8, C4<0>, C4<0>;
+L_0000019bac505b60 .functor AND 1, o0000019bac506fa8, o0000019bac506fd8, C4<1>, C4<1>;
+v0000019bac4d33e0_0 .net "A", 0 0, o0000019bac506fa8;  0 drivers
+v0000019bac4baa80_0 .net "B", 0 0, o0000019bac506fd8;  0 drivers
+v0000019bac506dd0_0 .net "Carry", 0 0, L_0000019bac505b60;  1 drivers
+v0000019bac506e70_0 .net "Sum", 0 0, L_0000019bac4bab20;  1 drivers
+S_0000019bac506c40 .scope module, "testbench" "testbench" 3 4;
+ .timescale -9 -9;
+v0000019bac4d3170_0 .var "A", 0 0;
+v0000019bac503ec0_0 .var "B", 0 0;
+v0000019bac503f60_0 .net "Carry", 0 0, L_0000019bac4d3820;  1 drivers
+v0000019bac504000_0 .net "Sum", 0 0, L_0000019bac4d3620;  1 drivers
+S_0000019bac4d2d60 .scope module, "uut" "half_adder_1" 3 8, 2 1 0, S_0000019bac506c40;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /OUTPUT 1 "Sum";
+    .port_info 3 /OUTPUT 1 "Carry";
+L_0000019bac4d3620 .functor XOR 1, v0000019bac4d3170_0, v0000019bac503ec0_0, C4<0>, C4<0>;
+L_0000019bac4d3820 .functor AND 1, v0000019bac4d3170_0, v0000019bac503ec0_0, C4<1>, C4<1>;
+v0000019bac4d2ef0_0 .net "A", 0 0, v0000019bac4d3170_0;  1 drivers
+v0000019bac4d2f90_0 .net "B", 0 0, v0000019bac503ec0_0;  1 drivers
+v0000019bac4d3030_0 .net "Carry", 0 0, L_0000019bac4d3820;  alias, 1 drivers
+v0000019bac4d30d0_0 .net "Sum", 0 0, L_0000019bac4d3620;  alias, 1 drivers
+    .scope S_0000019bac506c40;
+T_0 ;
+    %vpi_call 3 11 "$monitor", "A = %b, B = %b, Sum = %b, Carry = %b", v0000019bac4d3170_0, v0000019bac503ec0_0, v0000019bac504000_0, v0000019bac503f60_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000019bac4d3170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000019bac503ec0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000019bac4d3170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000019bac503ec0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000019bac4d3170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000019bac503ec0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000019bac4d3170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000019bac503ec0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 3 16 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "./half_adder.v";
+    "half_adder_tb.v";

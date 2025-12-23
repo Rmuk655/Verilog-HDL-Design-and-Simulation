@@ -1,0 +1,97 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000002230bf79fb0 .scope module, "arithmetic_unit" "arithmetic_unit" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "A";
+    .port_info 1 /INPUT 4 "B";
+    .port_info 2 /INPUT 1 "mode";
+    .port_info 3 /OUTPUT 4 "result";
+o000002230c096fd8 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v000002230c063b10_0 .net "A", 3 0, o000002230c096fd8;  0 drivers
+o000002230c097008 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v000002230c063740_0 .net "B", 3 0, o000002230c097008;  0 drivers
+v000002230bf7bd90_0 .net *"_ivl_0", 3 0, L_000002230c094260;  1 drivers
+v000002230bf7be30_0 .net *"_ivl_2", 3 0, L_000002230c094300;  1 drivers
+o000002230c097098 .functor BUFZ 1, C4<z>; HiZ drive
+v000002230bf7bed0_0 .net "mode", 0 0, o000002230c097098;  0 drivers
+v000002230c095eb0_0 .net "result", 3 0, L_000002230c0943a0;  1 drivers
+L_000002230c094260 .arith/sub 4, o000002230c096fd8, o000002230c097008;
+L_000002230c094300 .arith/sum 4, o000002230c096fd8, o000002230c097008;
+L_000002230c0943a0 .functor MUXZ 4, L_000002230c094300, L_000002230c094260, o000002230c097098, C4<>;
+S_000002230c095d20 .scope module, "logic_unit" "logic_unit" 2 5;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "A";
+    .port_info 1 /INPUT 4 "B";
+    .port_info 2 /INPUT 2 "sel";
+    .port_info 3 /OUTPUT 4 "result";
+o000002230c0971b8 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v000002230c095f50_0 .net "A", 3 0, o000002230c0971b8;  0 drivers
+o000002230c0971e8 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v000002230c095ff0_0 .net "B", 3 0, o000002230c0971e8;  0 drivers
+v000002230c096090_0 .var "result", 3 0;
+o000002230c097248 .functor BUFZ 2, C4<zz>; HiZ drive
+v000002230c0941c0_0 .net "sel", 1 0, o000002230c097248;  0 drivers
+E_000002230bf7c470 .event anyedge, v000002230c0941c0_0, v000002230c095f50_0, v000002230c095ff0_0;
+    .scope S_000002230c095d20;
+T_0 ;
+    %wait E_000002230bf7c470;
+    %load/vec4 v000002230c0941c0_0;
+    %pad/u 4;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 4;
+    %cmp/u;
+    %jmp/1 T_0.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 4;
+    %cmp/u;
+    %jmp/1 T_0.1, 6;
+    %dup/vec4;
+    %pushi/vec4 10, 0, 4;
+    %cmp/u;
+    %jmp/1 T_0.2, 6;
+    %dup/vec4;
+    %pushi/vec4 11, 0, 4;
+    %cmp/u;
+    %jmp/1 T_0.3, 6;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v000002230c096090_0, 0, 4;
+    %jmp T_0.5;
+T_0.0 ;
+    %load/vec4 v000002230c095f50_0;
+    %load/vec4 v000002230c095ff0_0;
+    %and;
+    %store/vec4 v000002230c096090_0, 0, 4;
+    %jmp T_0.5;
+T_0.1 ;
+    %load/vec4 v000002230c095f50_0;
+    %load/vec4 v000002230c095ff0_0;
+    %or;
+    %store/vec4 v000002230c096090_0, 0, 4;
+    %jmp T_0.5;
+T_0.2 ;
+    %load/vec4 v000002230c095f50_0;
+    %load/vec4 v000002230c095ff0_0;
+    %xor;
+    %store/vec4 v000002230c096090_0, 0, 4;
+    %jmp T_0.5;
+T_0.3 ;
+    %load/vec4 v000002230c095f50_0;
+    %inv;
+    %store/vec4 v000002230c096090_0, 0, 4;
+    %jmp T_0.5;
+T_0.5 ;
+    %pop/vec4 1;
+    %jmp T_0;
+    .thread T_0, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "ALU.v";

@@ -1,0 +1,85 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000018e1cd89580 .scope module, "testbench" "testbench" 2 4;
+ .timescale -9 -9;
+v0000018e1ce733e0_0 .net "A", 0 0, v0000018e1ce739c0_0;  1 drivers
+v0000018e1ce73480_0 .var "B", 0 0;
+v0000018e1ce73520_0 .net "C", 0 0, v0000018e1cd8bea0_0;  1 drivers
+v0000018e1ce735c0_0 .var "D", 0 0;
+v0000018e1ce73660_0 .var "clk", 0 0;
+S_0000018e1cd8bd10 .scope module, "uut" "block_vs_non_block" 2 11, 3 1 0, S_0000018e1cd89580;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "B";
+    .port_info 1 /INPUT 1 "D";
+    .port_info 2 /INPUT 1 "clk";
+    .port_info 3 /OUTPUT 1 "A";
+    .port_info 4 /OUTPUT 1 "C";
+v0000018e1ce739c0_0 .var "A", 0 0;
+v0000018e1ce73c00_0 .net "B", 0 0, v0000018e1ce73480_0;  1 drivers
+v0000018e1cd8bea0_0 .var "C", 0 0;
+v0000018e1cd8bf40_0 .net "D", 0 0, v0000018e1ce735c0_0;  1 drivers
+v0000018e1ce73340_0 .net "clk", 0 0, v0000018e1ce73660_0;  1 drivers
+E_0000018e1ce94f60 .event posedge, v0000018e1ce73340_0;
+    .scope S_0000018e1cd8bd10;
+T_0 ;
+    %wait E_0000018e1ce94f60;
+    %load/vec4 v0000018e1ce73c00_0;
+    %store/vec4 v0000018e1ce739c0_0, 0, 1;
+    %load/vec4 v0000018e1cd8bf40_0;
+    %assign/vec4 v0000018e1cd8bea0_0, 0;
+    %vpi_call 3 5 "$display", "Inside always: A=%b, C=%b", v0000018e1ce739c0_0, v0000018e1cd8bea0_0 {0 0 0};
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0000018e1cd89580;
+T_1 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000018e1ce73660_0, 0, 1;
+    %end;
+    .thread T_1;
+    .scope S_0000018e1cd89580;
+T_2 ;
+    %delay 5, 0;
+    %load/vec4 v0000018e1ce73660_0;
+    %inv;
+    %store/vec4 v0000018e1ce73660_0, 0, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0000018e1cd89580;
+T_3 ;
+    %vpi_call 2 14 "$monitor", "clk = %b, B = %b, A = %b, D = %b, C = %b", v0000018e1ce73660_0, v0000018e1ce73480_0, v0000018e1ce733e0_0, v0000018e1ce735c0_0, v0000018e1ce73520_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000018e1ce73480_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000018e1ce735c0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000018e1ce73480_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000018e1ce735c0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000018e1ce73480_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000018e1ce735c0_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000018e1ce73480_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000018e1ce735c0_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 19 "$finish" {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "blocking_vs_non_blocking_tb.v";
+    "./blocking_vs_non_blocking.v";

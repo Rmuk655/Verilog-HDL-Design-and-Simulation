@@ -1,0 +1,83 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001ac240dd800 .scope module, "mux_2_to_1_2" "mux_2_to_1_2" 2 5;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "sel";
+    .port_info 3 /OUTPUT 1 "y";
+o000001ac24127fd8 .functor BUFZ 1, C4<z>; HiZ drive
+v000001ac240ddb20_0 .net "a", 0 0, o000001ac24127fd8;  0 drivers
+o000001ac24128008 .functor BUFZ 1, C4<z>; HiZ drive
+v000001ac240ddbc0_0 .net "b", 0 0, o000001ac24128008;  0 drivers
+o000001ac24128038 .functor BUFZ 1, C4<z>; HiZ drive
+v000001ac241245f0_0 .net "sel", 0 0, o000001ac24128038;  0 drivers
+v000001ac24124690_0 .var "y", 0 0;
+E_000001ac240d8f40 .event anyedge, v000001ac241245f0_0, v000001ac240ddb20_0, v000001ac240ddbc0_0;
+S_000001ac240dd990 .scope module, "testbench" "testbench" 3 5;
+ .timescale -9 -9;
+v000001ac240f3600_0 .var "A", 9 0;
+v000001ac240f36a0_0 .var "B", 9 0;
+v000001ac240f3740_0 .var "SEL", 0 0;
+v000001ac2416f060_0 .net "Y", 9 0, L_000001ac2416f100;  1 drivers
+S_000001ac24124730 .scope module, "uut" "mux_2_to_1_1" 3 10, 2 1 0, S_000001ac240dd990;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 10 "a";
+    .port_info 1 /INPUT 10 "b";
+    .port_info 2 /INPUT 1 "sel";
+    .port_info 3 /OUTPUT 10 "y";
+P_000001ac240d9b00 .param/l "width" 0 2 1, +C4<00000000000000000000000000001010>;
+v000001ac240f3380_0 .net "a", 9 0, v000001ac240f3600_0;  1 drivers
+v000001ac240f3420_0 .net "b", 9 0, v000001ac240f36a0_0;  1 drivers
+v000001ac240f34c0_0 .net "sel", 0 0, v000001ac240f3740_0;  1 drivers
+v000001ac240f3560_0 .net "y", 9 0, L_000001ac2416f100;  alias, 1 drivers
+L_000001ac2416f100 .functor MUXZ 10, v000001ac240f3600_0, v000001ac240f36a0_0, v000001ac240f3740_0, C4<>;
+    .scope S_000001ac240dd800;
+T_0 ;
+    %wait E_000001ac240d8f40;
+    %load/vec4 v000001ac241245f0_0;
+    %pad/u 32;
+    %cmpi/e 0, 0, 32;
+    %jmp/0xz  T_0.0, 4;
+    %load/vec4 v000001ac240ddb20_0;
+    %store/vec4 v000001ac24124690_0, 0, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v000001ac240ddbc0_0;
+    %store/vec4 v000001ac24124690_0, 0, 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_000001ac240dd990;
+T_1 ;
+    %vpi_call 3 13 "$monitor", "A = %b, B = %b, SEL = %b, Y = %b", v000001ac240f3600_0, v000001ac240f36a0_0, v000001ac240f3740_0, v000001ac2416f060_0 {0 0 0};
+    %pushi/vec4 0, 0, 10;
+    %store/vec4 v000001ac240f3600_0, 0, 10;
+    %pushi/vec4 1, 0, 10;
+    %store/vec4 v000001ac240f36a0_0, 0, 10;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001ac240f3740_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 10;
+    %store/vec4 v000001ac240f3600_0, 0, 10;
+    %pushi/vec4 1, 0, 10;
+    %store/vec4 v000001ac240f36a0_0, 0, 10;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001ac240f3740_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 3 16 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "./mux_2_to_1.v";
+    "mux_2_to_1_tb.v";
