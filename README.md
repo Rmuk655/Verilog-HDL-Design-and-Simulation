@@ -20,7 +20,7 @@ The repository is organized by topic, with each folder containing Verilog module
 
 ### Sequential Circuits
 - **flipflops/** – D, JK, T flip-flop implementations  
-- **shift_registers/** – Serial/parallel shift registers  
+- **shift registers/** – Serial/parallel shift registers  
 - **bit counter/** – Bit counters and related logic  
 
 ### Logical Operations
@@ -40,9 +40,10 @@ The repository is organized by topic, with each folder containing Verilog module
 ├── encoder/
 ├── logical_operations/
 ├── flipflops/
-├── shift_registers/
+├── shift registers/
 ├── bit counter/
 ├── Miscellaneous/
+├── hello/
 └── README.md
 ```
 
