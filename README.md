@@ -49,6 +49,27 @@ The repository is organized by topic, with each folder containing Verilog module
 
 ---
 
+## Run the simulations
+
+Install [Icarus Verilog](https://steveicarus.github.io/iverilog/) (optionally GTKWave for waveforms), then run every testbench:
+
+```bash
+sudo apt install iverilog gtkwave     # Debian / Ubuntu
+./run_tests.sh                        # compile and simulate all 31 testbenches
+./run_tests.sh adder                  # only testbenches whose path contains "adder"
+```
+
+macOS: `brew install icarus-verilog`. Windows: use the [Icarus Verilog installer](https://bleyer.org/icarus/) or WSL.
+
+To run a single design by hand (testbenches `include` their design file, so run from its folder):
+
+```bash
+cd MUX
+iverilog -g2012 -o mux mux_4_to_1_tb.v && vvp mux
+```
+
+---
+
 ##  Tools Used
 
 - **Verilog HDL**

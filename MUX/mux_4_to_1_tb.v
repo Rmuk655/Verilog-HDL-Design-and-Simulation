@@ -19,7 +19,7 @@ module testbench;
     //     $finish;
     // end
 
-    mux_4_to_1_2 #(.size(`size)) uut (a, b, c, d, sel, y);
+    mux_4_to_1_3 #(.size(`size)) uut (a, b, c, d, sel, y);
 
     initial begin
         $monitor("a = %0d, b = %0d, c = %0d, d = %0d, sel = %b, y = %0d", a, b, c, d, sel, y);
