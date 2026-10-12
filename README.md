@@ -1,5 +1,7 @@
 # Verilog Practice
 
+[![CI](https://github.com/Rmuk655/Verilog-HDL-Design-and-Simulation/actions/workflows/ci.yml/badge.svg)](https://github.com/Rmuk655/Verilog-HDL-Design-and-Simulation/actions/workflows/ci.yml)
+
 This repository contains **Verilog HDL implementations** of fundamental **digital logic and hardware design components**.  
 
 ---
