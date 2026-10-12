@@ -10,7 +10,7 @@ module adder_2_bit_2(input a, input b, input cin, output sum, output cout); //St
     wire s1, c1, c2;
     half_adder_1 ins1 (.A(a), .B(b), .Sum(s1), .Carry(c1));
     half_adder_1 ins2 (.A(s1), .B(cin), .Sum(sum), .Carry(c2));
-    cout = c1 | c2;
+    assign cout = c1 | c2;
 endmodule
 
 module adder_2_bit_3(input a, input b, input cin, output sum, output cout); //Structural modelling
